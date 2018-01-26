@@ -6,7 +6,7 @@
     "url": "ULIVZ/program-language-detector",
     "type": "git"
   },
-  "main": "dist/htmlCssTransformer.js",
+  "main": "dist/programLanguageDetector.js",
   "files": [
     "dist"
   ],
