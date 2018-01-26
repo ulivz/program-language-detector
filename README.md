@@ -1,4 +1,3 @@
-
 # program-language-detector
 
 [![NPM version](https://img.shields.io/npm/v/program-language-detector.svg?style=flat)](https://npmjs.com/package/program-language-detector) [![NPM downloads](https://img.shields.io/npm/dm/program-language-detector.svg?style=flat)](https://npmjs.com/package/program-language-detector) [![CircleCI](https://circleci.com/gh/ULIVZ/program-language-detector/tree/master.svg?style=shield)](https://circleci.com/gh/ULIVZ/program-language-detector/tree/master)  [![codecov](https://codecov.io/gh/ULIVZ/program-language-detector/branch/master/graph/badge.svg)](https://codecov.io/gh/ULIVZ/program-language-detector)
@@ -10,13 +9,25 @@
 npm i program-language-detector
 ```
 
+## Detectable languages
+
+- JavaScript
+- C
+- C++
+- Python
+- Java
+- HTML
+- CSS
+- Ruby
+- Go
+- PHP
+
 ## Usage
 
 ```js
 const programLanguageDetector = require('program-language-detector')
 
-programLanguageDetector()
-//=> foo
+programLanguageDetector(/* string */)
 ```
 
 ## Contributing
