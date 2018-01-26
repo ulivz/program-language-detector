@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Program Language Detector</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/dmo"></script>
+<script src="dist/programLanguageDetector.min.js"></script>
+<script>
+  window.dmo({
+    title: 'Program Language Detector',
+    username: 'ulivz',
+    name: 'program-language-detector',
+    input: 'https://github.com/ulivz/language-classifier-repl/blob/master/index.html',
+    transformers: {
+      'Playground': function (raw) {
+        return programLanguageDetector(raw)
+      }
+    }
+  })
+</script>
+</body>
+</html>
