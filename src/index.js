@@ -293,7 +293,7 @@ function getPoints(language, lineOfCode, checkers) {
     .reduce((memo, num) => memo + num, 0);
 }
 
-function detectLang(snippet, options) {
+function detect(snippet, options) {
   const opts = Object.assign({
     heuristic: true,
     statistics: false,
@@ -359,4 +359,7 @@ function detectLang(snippet, options) {
   return bestResult.language;
 }
 
-export default detectLang;
+export default {
+  detect,
+  languages: Object.keys(languages)
+};
