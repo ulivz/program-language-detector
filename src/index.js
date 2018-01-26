@@ -289,7 +289,8 @@ function getPoints(language, lineOfCode, checkers) {
         return checker.points;
       }
       return 0;
-    }).reduce((memo, num) => memo + num, 0);
+    })
+    .reduce((memo, num) => memo + num, 0);
 }
 
 function detectLang(snippet, options) {
@@ -344,7 +345,7 @@ function detectLang(snippet, options) {
     return { language: language, points: points };
   });
 
-  const sortedResult = results.sort((prev, next) => next.points - prev.points)
+  const sortedResult = results.sort((prev, next) => prev.points - next.points)
   const bestResult = sortedResult[sortedResult.length - 1]
 
   if (opts.statistics) {
