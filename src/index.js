@@ -1,50 +1,9 @@
 /**
- *	The MIT License (MIT)
- *
- *	Copyright (c) 2015 Toni Sučić
- *
- *	Permission is hereby granted, free of charge, to any person obtaining a copy
- *	of this software and associated documentation files (the "Software"), to deal
- *	in the Software without restriction, including without limitation the rights
- *	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *	copies of the Software, and to permit persons to whom the Software is
- *	furnished to do so, subject to the following conditions:
- *
- *	The above copyright notice and this permission notice shall be included in
- *	all copies or substantial portions of the Software.
- *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- *	THE SOFTWARE.
+ *  Modified from https://github.com/ts95/lang-detector
+ *  Copyright (c) 2015 Toni Sučić, The MIT License (MIT)
  */
 
-var _ = require('underscore');
-
-/**
- * A checker is an object with the following form:
- *  { pattern: /something/, points: 1 }
- * or if the pattern only matches code near the top of a given file:
- *  { pattern: /something/, points: 2, nearTop: true }
- *
- * Key: Language name.
- * Value: Array of checkers.
- *
- * N.B. An array of checkers shouldn't contain more regexes than
- * necessary as it would inhibit performance.
- *
- * Points scale:
- *  2 = Bonus points:   Almost unique to a given language.
- *  1 = Regular point:  Not unique to a given language.
- * -1 = Penalty point:  Does not match a given language.
- * Rare:
- * -50 = Bonus penalty points: Only used when two languages are mixed together,
- *  and one has a higher precedence over the other one.
- */
-var languages = {
+const languages = {
   'JavaScript': [
     // undefined keyword
     { pattern: /undefined/g, points: 2 },
@@ -324,23 +283,22 @@ var languages = {
 };
 
 function getPoints(language, lineOfCode, checkers) {
-  return _.reduce(_.map(checkers, function(checker) {
-    if (checker.pattern.test(lineOfCode)) {
-      return checker.points;
-    }
-    return 0;
-  }), function(memo, num) {
-    return memo + num;
-  }, 0);
+  return checkers
+    .map(checker => {
+      if (checker.pattern.test(lineOfCode)) {
+        return checker.points;
+      }
+      return 0;
+    }).reduce((memo, num) => memo + num, 0);
 }
 
 function detectLang(snippet, options) {
-  var opts = _.defaults(options || {}, {
+  const opts = Object.assign({
     heuristic: true,
     statistics: false,
-  });
+  }, options || {});
 
-  var linesOfCode = snippet
+  let linesOfCode = snippet
     .replace(/\r\n?/g, '\n')
     .replace(/\n{2,}/g, '\n')
     .split('\n');
@@ -353,7 +311,7 @@ function detectLang(snippet, options) {
   }
 
   if (opts.heuristic && linesOfCode.length > 500) {
-    linesOfCode = linesOfCode.filter(function(lineOfCode, index) {
+    linesOfCode = linesOfCode.filter(function (lineOfCode, index) {
       if (nearTop(index)) {
         return true;
       }
@@ -361,42 +319,37 @@ function detectLang(snippet, options) {
     });
   }
 
-  var pairs = _.keys(languages).map(function(key) {
+  const pairs = Object.keys(languages).map((key) => {
     return { language: key, checkers: languages[key] };
   });
 
-  var results = _.map(pairs, function(pairs) {
-    var language = pairs.language;
-    var checkers = pairs.checkers;
+  const results = pairs.map((pairs) => {
+    const language = pairs.language;
+    const checkers = pairs.checkers;
 
     if (language === 'Unknown') {
       return { language: 'Unknown', points: 1 };
     }
 
-    var pointsList = linesOfCode.map(function(lineOfCode, index) {
+    const pointsList = linesOfCode.map(function (lineOfCode, index) {
       if (!nearTop(index)) {
-        return getPoints(language, lineOfCode, _.reject(checkers, function(checker) {
-          return checker.nearTop;
-        }));
+        return getPoints(language, lineOfCode, checkers.filter(checker => !checker.nearTop));
       } else {
         return getPoints(language, lineOfCode, checkers);
       }
     });
 
-    var points = _.reduce(pointsList, function(memo, num) {
-      return memo + num;
-    });
+    const points = pointsList.reduce((memo, num) => memo + num);
 
     return { language: language, points: points };
   });
 
-  var bestResult = _.max(results, function(result) {
-    return result.points;
-  });
+  const sortedResult = results.sort((prev, next) => next.points - prev.points)
+  const bestResult = sortedResult[sortedResult.length - 1]
 
   if (opts.statistics) {
-    var statistics = {};
-    for (var result of results) {
+    const statistics = {};
+    for (const result of results) {
       statistics[result.language] = result.points;
     }
     return { detected: bestResult.language, statistics: statistics };
@@ -405,4 +358,4 @@ function detectLang(snippet, options) {
   return bestResult.language;
 }
 
-module.exports = detectLang;
+export default detectLang;
