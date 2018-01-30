@@ -1,6 +1,6 @@
 {
   "name": "program-language-detector",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A cross-platform lightweight programming language detector.",
   "repository": {
     "url": "ULIVZ/program-language-detector",
