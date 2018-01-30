@@ -9,7 +9,8 @@
   "main": "dist/programLanguageDetector.js",
   "module": "dist/programLanguageDetector.es.js",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "scripts": {
     "test:cov": "jest --coverage && npm run lint",
