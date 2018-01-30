@@ -3,7 +3,7 @@
  *  Copyright (c) 2015 Toni Sučić, The MIT License (MIT)
  */
 
-const languages = {
+const LANGUAGES = {
   'JavaScript': [
     // undefined keyword
     { pattern: /undefined/g, points: 2 },
@@ -320,8 +320,8 @@ function detect(snippet, options) {
     });
   }
 
-  const pairs = Object.keys(languages).map((key) => {
-    return { language: key, checkers: languages[key] };
+  const pairs = Object.keys(LANGUAGES).map((key) => {
+    return { language: key, checkers: LANGUAGES[key] };
   });
 
   const results = pairs.map((pairs) => {
@@ -359,7 +359,13 @@ function detect(snippet, options) {
   return bestResult.language;
 }
 
+const languages = Object.keys(LANGUAGES);
+const LANG = {}; // enum
+
+languages.forEach(language => Lang[language] = Lang);
+
 export default {
   detect,
-  languages: Object.keys(languages)
+  languages,
+  LANG
 };

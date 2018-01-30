@@ -1,5 +1,12 @@
-import programLanguageDetector from '../src'
+import { detect, LANG } from '../src'
 
 test('main', () => {
-  expect(typeof programLanguageDetector).toBe('function')
+
+  expect(detect('const egoist = new Object();')).toBe(LANG.JavaScript)
+
+  expect(detect('#app { font-size: 20px; }')).toBe(LANG.CSS)
+
+  expect(detect('<div id="app"></div>')).toBe(LANG.HTML)
+
+  expect(detect('List<String> things = new ArrayList<>();')).toBe(LANG.Java)
 })
