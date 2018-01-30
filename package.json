@@ -49,6 +49,9 @@
     "extends": "rem",
     "envs": [
       "jest"
-    ]
+    ],
+    "rules": {
+      "no-useless-escape": 0
+    }
   }
 }

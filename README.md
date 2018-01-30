@@ -13,12 +13,14 @@ __*A cross-platform lightweight programming language detector.*__ (🚀 Gzip < 2
 
 ```bash
 npm i program-language-detector
+# or
+yarn add program-language-detector
 ```
 
 ## Usage
 
 ```js
-const { detect, languages } = require('program-language-detector')
+const { detect, languages, LANG } = require('program-language-detector')
 
 detect('const egoist = new Object();')             // => 'JavaScript'
 detect('#app { font-size: 20px; }')                // => 'CSS'
@@ -27,6 +29,7 @@ detect('List<String> things = new ArrayList<>();') // => 'Java'
 // ...
 
 languages // => A list of detectable languages
+LANG // => A map of detectable languages, whose key and value are both lang name
 ```
 
 ## Detectable languages
