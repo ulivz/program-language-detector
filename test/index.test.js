@@ -1,4 +1,4 @@
-import { detect, LANG } from '../index'
+import { detect, LANG } from '../types/index'
 
 test('main', () => {
   expect(detect('const egoist = new Object();')).toBe(LANG.JavaScript)
