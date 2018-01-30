@@ -32,7 +32,16 @@ const LANGUAGES = {
     // pointer
     { pattern: /(\w+)( )*\*( )*\w+/, points: -1 },
     // HTML <script> tag
-    { pattern: /<(\/)?script( type=('|")text\/javascript('|"))?>/, points: -50 }
+    { pattern: /<(\/)?script( type=('|")text\/javascript('|"))?>/, points: -50 },
+    // ES6 import / export
+    { pattern: /(import|export(\s+)default)\s+({\s+[\w\s,]+\s+}|\w+)\s+from\s/, points: 2 },
+    // ES6 arrow function
+    { pattern: /\([^\(\)]{0,}\)\s+=>(\s+{)?/, points: 3 },
+    // () => {}
+    // (a) => {}
+    // (a, b) => {}
+    // ({ a, b}) => {}
+    // ([ a, b ]) => {}
   ],
 
   C: [
