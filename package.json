@@ -1,6 +1,6 @@
 {
   "name": "program-language-detector",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A cross-platform lightweight programming language detector.",
   "repository": {
     "type": "git",

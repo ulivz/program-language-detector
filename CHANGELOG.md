@@ -1,3 +1,13 @@
+<a name="0.0.7"></a>
+## [0.0.7](https://github.com/ulivz/program-language-detector/compare/v0.0.6...v0.0.7) (2018-01-30)
+
+
+### Bug Fixes
+
+* missing types in NPM release ([4a6aeda](https://github.com/ulivz/program-language-detector/commit/4a6aeda))
+
+
+
 <a name="0.0.6"></a>
 ## [0.0.6](https://github.com/ulivz/program-language-detector/compare/v0.0.5...v0.0.6) (2018-01-30)
 
