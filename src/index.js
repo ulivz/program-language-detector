@@ -365,8 +365,4 @@ languages.forEach(language => {
   LANG[language] = language
 })
 
-export {
-  detect,
-  languages,
-  LANG
-}
+export { detect, languages, LANG }
