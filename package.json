@@ -7,6 +7,7 @@
     "type": "git"
   },
   "main": "dist/programLanguageDetector.js",
+  "module": "dist/programLanguageDetector.es.js",
   "files": [
     "dist"
   ],
@@ -15,7 +16,7 @@
     "test": "npm run lint && jest",
     "lint": "xo",
     "prepublish": "npm run build",
-    "build": "bili --format umd,umd-min --exports default --name programLanguageDetector --banner"
+    "build": "bili --format es,cjs,umd,umd-min --exports named --name programLanguageDetector --banner"
   },
   "author": "ULIVZ <chl814@foxmail.com>",
   "license": "MIT",
