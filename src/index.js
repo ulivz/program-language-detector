@@ -4,7 +4,7 @@
  */
 
 const LANGUAGES = {
-  'JavaScript': [
+  JavaScript: [
     // undefined keyword
     { pattern: /undefined/g, points: 2 },
     // console.log('ayy lmao')
@@ -14,7 +14,7 @@ const LANGUAGES = {
     // Array/Object declaration
     { pattern: /(('|").+('|")( )*|\w+):( )*[{\[]/, points: 2 },
     // === operator
-    { pattern: /===/g, points: 1 },
+    { pattern: /\===/g, points: 1 },
     // !== operator
     { pattern: /!==/g, points: 1 },
     // Function definition
@@ -32,10 +32,10 @@ const LANGUAGES = {
     // pointer
     { pattern: /(\w+)( )*\*( )*\w+/, points: -1 },
     // HTML <script> tag
-    { pattern: /<(\/)?script( type=('|")text\/javascript('|"))?>/, points: -50 },
+    { pattern: /<(\/)?script( type=('|")text\/javascript('|"))?>/, points: -50 }
   ],
 
-  'C': [
+  C: [
     // Primitive variable declaration.
     { pattern: /(char|long|int|float|double)( )+\w+( )*=?/, points: 2 },
     // malloc function call
@@ -65,7 +65,7 @@ const LANGUAGES = {
     // Single quote multicharacter string
     { pattern: /'.{2,}'/, points: -1 },
     // JS variable declaration
-    { pattern: /var( )+\w+( )*=?/, points: -1 },
+    { pattern: /var( )+\w+( )*=?/, points: -1 }
   ],
 
   'C++': [
@@ -104,10 +104,10 @@ const LANGUAGES = {
     // Single quote multicharacter string
     { pattern: /'.{2,}'/, points: -1 },
     // Java List/ArrayList
-    { pattern: /(List<\w+>|ArrayList<\w*>( )*\(.*\))(( )+[\w]+|;)/, points: -1 },
+    { pattern: /(List<\w+>|ArrayList<\w*>( )*\(.*\))(( )+[\w]+|;)/, points: -1 }
   ],
 
-  'Python': [
+  Python: [
     // Function definition
     { pattern: /def( )+\w+\(.*\)( )*:/, points: 2 },
     // while loop
@@ -131,10 +131,10 @@ const LANGUAGES = {
     // print statement/function
     { pattern: /print((( )*\(.+\))|( )+.+)/, points: 1 },
     // &&/|| operators
-    { pattern: /(&{2}|\|{2})/, points: -1 },
+    { pattern: /(&{2}|\|{2})/, points: -1 }
   ],
 
-  'Java': [
+  Java: [
     // System.out.println() etc.
     { pattern: /System\.(in|out)\.\w+/, points: 2 },
     // Class variable declarations
@@ -174,27 +174,27 @@ const LANGUAGES = {
     // Single quote multicharacter string
     { pattern: /'.{2,}'/, points: -1 },
     // C style include
-    { pattern: /#include( )*(<|")\w+(\.h)?(>|")/, points: -1, nearTop: true },
+    { pattern: /#include( )*(<|")\w+(\.h)?(>|")/, points: -1, nearTop: true }
   ],
 
-  'HTML': [
+  HTML: [
     { pattern: /<!DOCTYPE (html|HTML PUBLIC .+)>/, points: 2, nearTop: true },
     // Tags
     { pattern: /<[a-z0-9]+(( )*[\w]+=('|").+('|")( )*)?>.*<\/[a-z0-9]+>/g, points: 2 },
     // Properties
     { pattern: /[a-z\-]+=("|').+("|')/g, points: 2 },
     // PHP tag
-    { pattern: /<\?php/, points: -50 },
+    { pattern: /<\?php/, points: -50 }
   ],
 
-  'CSS': [
+  CSS: [
     // Properties
     { pattern: /[a-z\-]+:(?!:).+;/, points: 2 },
     // <style> tag from HTML
-    { pattern: /<(\/)?style>/, points: -50 },
+    { pattern: /<(\/)?style>/, points: -50 }
   ],
 
-  'Ruby': [
+  Ruby: [
     // require/include
     { pattern: /(require|include)( )+'\w+(\.rb)?'/, points: 2, nearTop: true },
     // Function definition
@@ -220,10 +220,10 @@ const LANGUAGES = {
     // nil keyword
     { pattern: /nil/, points: 1 },
     // Scope operator
-    { pattern: /[A-Z]\w*::[A-Z]\w*/, points: 1 },
+    { pattern: /[A-Z]\w*::[A-Z]\w*/, points: 1 }
   ],
 
-  'Go': [
+  Go: [
     // package something
     { pattern: /package( )+[a-z]+\n/, points: 2, nearTop: true },
     // import
@@ -245,10 +245,10 @@ const LANGUAGES = {
     // nil keyword
     { pattern: /nil/, points: 1 },
     // Single quote multicharacter string
-    { pattern: /'.{2,}'/, points: -1 },
+    { pattern: /'.{2,}'/, points: -1 }
   ],
 
-  'PHP': [
+  PHP: [
     // PHP tag
     { pattern: /<\?php/, points: 2 },
     // PHP style variables.
@@ -272,100 +272,101 @@ const LANGUAGES = {
     // scope operator
     { pattern: /\w+::\w+/, points: 1 },
     // === operator
-    { pattern: /===/g, points: 1 },
+    { pattern: /\===/g, points: 1 },
     // !== operator
     { pattern: /!==/g, points: 1 },
     // C/JS style variable declaration.
-    { pattern: /(^|\s)(var|char|long|int|float|double)( )+\w+( )*=?/, points: -1 },
+    { pattern: /(^|\s)(var|char|long|int|float|double)( )+\w+( )*=?/, points: -1 }
   ],
 
-  'Unknown': [],
-};
+  Unknown: []
+}
 
 function getPoints(language, lineOfCode, checkers) {
   return checkers
     .map(checker => {
       if (checker.pattern.test(lineOfCode)) {
-        return checker.points;
+        return checker.points
       }
-      return 0;
+      return 0
     })
-    .reduce((memo, num) => memo + num, 0);
+    .reduce((memo, num) => memo + num, 0)
 }
 
 function detect(snippet, options) {
   const opts = Object.assign({
     heuristic: true,
-    statistics: false,
-  }, options || {});
+    statistics: false
+  }, options || {})
 
   let linesOfCode = snippet
     .replace(/\r\n?/g, '\n')
     .replace(/\n{2,}/g, '\n')
-    .split('\n');
+    .split('\n')
 
   function nearTop(index) {
     if (linesOfCode.length <= 10) {
-      return true;
+      return true
     }
-    return index < linesOfCode.length / 10;
+    return index < linesOfCode.length / 10
   }
 
   if (opts.heuristic && linesOfCode.length > 500) {
-    linesOfCode = linesOfCode.filter(function (lineOfCode, index) {
+    linesOfCode = linesOfCode.filter((lineOfCode, index) => {
       if (nearTop(index)) {
-        return true;
+        return true
       }
-      return index % Math.ceil(linesOfCode.length / 500) === 0;
-    });
+      return index % Math.ceil(linesOfCode.length / 500) === 0
+    })
   }
 
-  const pairs = Object.keys(LANGUAGES).map((key) => {
-    return { language: key, checkers: LANGUAGES[key] };
-  });
+  const pairs = Object.keys(LANGUAGES).map(key => {
+    return { language: key, checkers: LANGUAGES[key] }
+  })
 
-  const results = pairs.map((pairs) => {
-    const language = pairs.language;
-    const checkers = pairs.checkers;
+  const results = pairs.map(pairs => {
+    const language = pairs.language
+    const checkers = pairs.checkers
 
     if (language === 'Unknown') {
-      return { language: 'Unknown', points: 1 };
+      return { language: 'Unknown', points: 1 }
     }
 
-    const pointsList = linesOfCode.map(function (lineOfCode, index) {
+    const pointsList = linesOfCode.map((lineOfCode, index) => {
       if (!nearTop(index)) {
-        return getPoints(language, lineOfCode, checkers.filter(checker => !checker.nearTop));
-      } else {
-        return getPoints(language, lineOfCode, checkers);
+        return getPoints(language, lineOfCode, checkers.filter(checker => !checker.nearTop))
       }
-    });
+      return getPoints(language, lineOfCode, checkers)
+    })
 
-    const points = pointsList.reduce((memo, num) => memo + num);
+    const points = pointsList.reduce((memo, num) => memo + num)
 
-    return { language: language, points: points };
-  });
+    return { language, points }
+  })
 
   const sortedResult = results.sort((prev, next) => prev.points - next.points)
   const bestResult = sortedResult[sortedResult.length - 1]
 
   if (opts.statistics) {
-    const statistics = {};
+    const statistics = {}
     for (const result of results) {
-      statistics[result.language] = result.points;
+      statistics[result.language] = result.points
     }
-    return { detected: bestResult.language, statistics: statistics };
+    return { detected: bestResult.language, statistics }
   }
 
-  return bestResult.language;
+  return bestResult.language
 }
 
-const languages = Object.keys(LANGUAGES);
-const LANG = {}; // enum
+const languages = Object.keys(LANGUAGES)
+const LANG = {}
 
-languages.forEach(language => Lang[language] = Lang);
+languages.forEach(language => {
+  LANG[language] = language
+})
 
-export default {
+export {
   detect,
   languages,
   LANG
-};
+}

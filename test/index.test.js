@@ -1,7 +1,6 @@
 import { detect, LANG } from '../src'
 
 test('main', () => {
-
   expect(detect('const egoist = new Object();')).toBe(LANG.JavaScript)
 
   expect(detect('#app { font-size: 20px; }')).toBe(LANG.CSS)
