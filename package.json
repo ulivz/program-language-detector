@@ -47,6 +47,7 @@
     "babel-preset-env": "^1.4.0",
     "bili": "^2.2.3"
   },
+  "typings": "types/index.d.ts",
   "xo": {
     "extends": "rem",
     "envs": [
