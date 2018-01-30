@@ -3,8 +3,8 @@
   "version": "0.0.5",
   "description": "A cross-platform lightweight programming language detector.",
   "repository": {
-    "url": "ULIVZ/program-language-detector",
-    "type": "git"
+    "type": "git",
+    "url": "git+https://github.com/ulivz/program-language-detector.git"
   },
   "main": "dist/programLanguageDetector.js",
   "module": "dist/programLanguageDetector.es.js",
