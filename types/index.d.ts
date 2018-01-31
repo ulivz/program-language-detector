@@ -1,4 +1,4 @@
-export interface LANG {
+export interface Lang {
   JavaScript: string
   C: string
   'C++': string
@@ -13,6 +13,5 @@ export interface LANG {
 }
 
 export function detect(snippet: string): string
-
 export const languages: string[]
-
+export const LANG: Lang
