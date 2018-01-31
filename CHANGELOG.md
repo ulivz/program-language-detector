@@ -1,3 +1,13 @@
+<a name="0.0.10"></a>
+## [0.0.10](https://github.com/ulivz/program-language-detector/compare/v0.0.9...v0.0.10) (2018-01-31)
+
+
+### Bug Fixes
+
+* incorrect type definitions ([cb29ed3](https://github.com/ulivz/program-language-detector/commit/cb29ed3))
+
+
+
 <a name="0.0.9"></a>
 ## [0.0.9](https://github.com/ulivz/program-language-detector/compare/v0.0.8...v0.0.9) (2018-01-30)
 
