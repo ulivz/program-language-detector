@@ -15,6 +15,7 @@
     username: 'ulivz',
     name: 'program-language-detector',
     input: 'https://github.com/ulivz/language-classifier-repl/blob/master/index.html',
+    detectLanguage: true,
     transformers: {
       'Playground': function (raw) {
         return programLanguageDetector.detect(raw)
