@@ -358,9 +358,9 @@ function detect(snippet, options) {
 
   if (opts.statistics) {
     const statistics = {}
-    for (const result of results) {
+    results.forEach(result => {
       statistics[result.language] = result.points
-    }
+    })
     return { detected: bestResult.language, statistics }
   }
 
