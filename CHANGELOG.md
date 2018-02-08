@@ -1,3 +1,8 @@
+<a name="0.0.11"></a>
+## [0.0.11](https://github.com/ulivz/program-language-detector/compare/v0.0.10...v0.0.11) (2018-02-08)
+
+
+
 <a name="0.0.10"></a>
 ## [0.0.10](https://github.com/ulivz/program-language-detector/compare/v0.0.9...v0.0.10) (2018-01-31)
 
