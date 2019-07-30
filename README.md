@@ -1,7 +1,7 @@
 # program-language-detector
 
 [![NPM version](https://img.shields.io/npm/v/program-language-detector.svg?style=flat)](https://npmjs.com/package/program-language-detector) [![NPM downloads](https://img.shields.io/npm/dm/program-language-detector.svg?style=flat)](https://npmjs.com/package/program-language-detector) [![CircleCI](https://circleci.com/gh/ULIVZ/program-language-detector/tree/master.svg?style=shield)](https://circleci.com/gh/ULIVZ/program-language-detector/tree/master)  [![codecov](https://codecov.io/gh/ULIVZ/program-language-detector/branch/master/graph/badge.svg)](https://codecov.io/gh/ULIVZ/program-language-detector)
- [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](https://github.com/ULIVZ/donate)
+ [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](https://github.com/ULIVZ/donate) [![Greenkeeper badge](https://badges.greenkeeper.io/ulivz/program-language-detector.svg)](https://greenkeeper.io/)
 
 <p align="center">
 
