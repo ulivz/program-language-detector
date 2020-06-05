@@ -1,4 +1,4 @@
-import { detect, LANG } from '../types/index'
+import { detect, LANG } from '../src/index'
 
 test('main', () => {
   expect(detect('const egoist = new Object();')).toBe(LANG.JavaScript)
@@ -8,4 +8,9 @@ test('main', () => {
   expect(detect('<div id="app"></div>')).toBe(LANG.HTML)
 
   expect(detect('List<String> things = new ArrayList<>();')).toBe(LANG.Java)
+})
+
+test('repeating call', () => {
+  expect(detect('<div id="app"></div>')).toBe(LANG.HTML)
+  expect(detect('<div id="app"></div>')).toBe(LANG.HTML)
 })
